@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="/style.css" type="text/css">
+<title>Mines</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h4>
+		<a href="/">Gamestudio</a>
+	</h4>
+	<h4>Mines</h4>
+	<div th:if="${@mainController.logged}">
+		<h5>
+			You are logged as <span
+				th:text="${@mainController.loggedPlayer.name}"></span> <br> <a
+				href="/logout">Logout</a>
+		</h5>
+	</div>
+
+
+	<h4>
+		<a href="/mines">New game</a>
+	</h4>
+	<br />
+	<section>
+		<div class="container">
+			You are now <span th:if="${@minesController.marking}">MARKING</span>
+			<span th:if="${not @minesController.marking}">OPENING</span> <br>
+			<a href="/mines/change">click to here change</a><br />
+
+
+
+			<div th:utext="${@minesController.htmlField}"></div>
+		
+</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="/style.css" type="text/css">
+<title>Puzzle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h4>
+		<a href="/">Gamestudio</a>
+	</h4>
+
+	<h4>Puzzle</h4>
+
+	<div th:if="${not @mainController.logged}">
+		<h5>
+			You are not logged. <br> Please <a href="/">log in</a>
+		</h5>
+	</div>
+
+	<div th:if="${@mainController.logged}">
+		<h5>
+			You are logged as <span
+				th:text="${@mainController.loggedPlayer.name}"></span><br />
+		</h5>
+	</div>
+
+	<h4>
+		<a href="/puzzle">New game</a>
+	</h4>
+	<br />
+	<section>
+		<div class="container">
+			<div th:if="${@puzzleController.solved}">
+				You've solved the puzzle!<br /> <img
+					src="/images/puzzle/puzzle.jpg" />
+			</div>
+
+			<div th:if="${not @puzzleController.solved}">
+				<div th:utext="${@puzzleController.htmlField}"></div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<h3>Scores</h3>
+	<ol class="">
+		<li th:each="score : ${@puzzleController.scores}"><span
+			th:text="${score.ident}"></span> <span th:text="${score.username}"></span>
+			<span th:text="${score.game}"></span> <span th:text="${score.value}"></span>
+		</li>
+	</ol>
+
+
+	<div th:if="${@mainController.logged}">
+		<form action="/puzzle/comment">
+			Comment: <input type="text" name="content" /> <input type="submit"
+				value="Send comment" />
+		</form>
+	</div>
+
+
+	<h4>Comments</h4>
+	<br />
+	<ol>
+		<li th:each="comment: ${@puzzleController.comment}"><span
+			th:text="${comment.ident}"></span><span 
+			th:text="${comment.username}"></span><span 
+			th:text="${comment.game}"></span> <span
+			th:text="${comment.content}"></span></li>
+	</ol>
+
+
+
+
+</body>
+</html>
