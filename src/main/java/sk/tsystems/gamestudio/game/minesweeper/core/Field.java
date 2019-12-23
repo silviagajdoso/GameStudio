@@ -14,6 +14,8 @@ public class Field {
 	private final Tile[][] tiles;
 
 	private int numberOfOpenedTiles;
+	private long startMillis;
+
 
 	public Field(int rowCount, int columnCount, int mineCount) {
 		if (rowCount * columnCount <= mineCount)
@@ -127,7 +129,11 @@ public class Field {
 	}
 
 	public void openTile(int row, int column) {
-		Tile tile = getTile(row, column);
+		if (startMillis == 0) {
+			startMillis = System.currentTimeMillis();
+		}
+
+		Tile tile = tiles[row][column];
 
 		if (tile.getState() == TileState.CLOSED) {
 			tile.setState(TileState.OPENED);
@@ -161,7 +167,18 @@ public class Field {
 		}
 	}
 
-	private boolean isSolved() {
+	public boolean isSolved() {
 		return numberOfOpenedTiles == rowCount * columnCount - mineCount;
 	}
+	
+	public int getScore() {
+		if(state == GameState.SOLVED) {
+			int seconds = (int)((System.currentTimeMillis() - startMillis) / 1000);
+			int score = rowCount * columnCount * 3 - seconds;
+			return score > 0 ? score : 0;
+		} else {
+			return 0;
+		}
+	}
+
 }

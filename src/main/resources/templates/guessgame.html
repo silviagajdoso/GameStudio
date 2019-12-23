@@ -1,0 +1,96 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Guess Game</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+
+	<div class="w3-container w3-center ">
+		<h1>Game Studio</h1>
+	</div>
+	<h4>Guess The Number Game</h4>
+	<div th:if="${@mainController.logged}">
+		<h5>
+			You are logged as <span
+				th:text="${@mainController.loggedPlayer.name}"></span> <br> <a
+				href="/logout">Logout</a>
+		</h5>
+	</div>
+	
+		<br /> <a href="/"> Menu </a> <br /> <a href="/guessgame">
+			NewGame </a> <br />
+
+<br>
+
+<h4>Guess the number from 0 to 100</h4>
+	<section>
+		<div class="container">
+			<form action="/guessgame/guess">
+				<input type="text" name="value"> <input type="submit"
+					value="Submit Number">
+			</form>
+			<div class="w3-container  w3-allerta"
+				th:utext="${@guessnumberController.message}"></div>
+
+
+		</div>
+	</section>
+
+	<div class="column2">
+		<h4>Scores</h4>
+		<ol>
+			<li th:each="score : ${@guessnumberController.scores}"><span
+				th:text="${score.username}"></span> <span th:text="${score.game}"></span>
+				<span th:text="${score.value}"></span></li>
+		</ol>
+
+	</div>
+
+
+	<div class="column2" th:if="${@mainController.logged}">
+		<h4>Raiting</h4>
+		<form action="/guessgame/raiting">
+
+			<label><input type="radio" name="raiting" value="1"></label>
+			<label><input type="radio" name="raiting" value="2"></label>
+			<label><input type="radio" name="raiting" value="3"></label>
+			<label><input type="radio" name="raiting" value="4"></label>
+			<label><input type="radio" name="raiting" value="5"></label>
+
+
+
+			<button type="submit">Submit</button>
+		</form>
+		<form action="/guessgame/comment">
+		Comment: <input type="text" name="content" /> <input type="submit"
+			value="Send comment" /> <br> <br> <br>
+	</form>
+		
+
+	</div>
+
+
+
+	<div class="column2">
+		<h4>Comments</h4>
+		<br />
+		<ol>
+			<li th:each="comment: ${@guessnumberController.comment}"><span
+				th:text="${comment.username}"></span><span th:text="${comment.game}"></span>
+				<span th:text="${comment.content}"></span></li>
+		</ol>
+	</div>
+
+</body>
+</html>

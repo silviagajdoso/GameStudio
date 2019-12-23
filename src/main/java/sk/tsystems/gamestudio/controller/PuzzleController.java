@@ -11,9 +11,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.entity.Comment;
+import sk.tsystems.gamestudio.entity.Raiting;
 import sk.tsystems.gamestudio.game.npuzzle.core.Field;
 import sk.tsystems.gamestudio.game.npuzzle.core.Tile;
 import sk.tsystems.gamestudio.service.ScoreService.CommentService;
+import sk.tsystems.gamestudio.service.ScoreService.RaitingService;
 import sk.tsystems.gamestudio.service.ScoreService.ScoreService;
 
 @Controller
@@ -27,6 +29,9 @@ public class PuzzleController {
 
 	@Autowired
 	private ScoreService scoreService;
+	
+	@Autowired
+	private RaitingService raitingService;
 
 	@Autowired
 	private MainController mainController;
@@ -58,6 +63,17 @@ public class PuzzleController {
 		}
 		return "puzzle";
 	}
+	
+	@RequestMapping("/rating")
+	public String raiting(String raiting) {
+		try {System.out.println("----------------------------------------------------------------------------------" + raiting);
+			int parseRate = Integer.parseInt(raiting);
+			raitingService.setRaiting(new Raiting(mainController.getLoggedPlayer().getName(), "puzzle", parseRate));
+		} catch (Exception e) {
+		  e.printStackTrace();
+		}
+		return "puzzle";}
+
 
 	public String getHtmlField() {
 		Formatter f = new Formatter();

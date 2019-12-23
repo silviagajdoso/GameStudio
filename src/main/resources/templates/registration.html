@@ -2,66 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <link rel="stylesheet" href="/style.css" type="text/css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <meta charset="utf-8">
 <title>Gamestudio</title>
 </head>
 <body>
 	<h1>Welcome to Game Studio!</h1>
-	
-	
+
+
 	<div th:if="${not @mainController.logged}">
 		<h4>Registration</h4>
 
 		<form action="/registration/signin">
 
 			<div class="info">
-				Username:<input type="text" name="name" /> 
-				Password: <input type="password" name="passwd" />
+				Username:<input type="text" name="name" /> Password: <input
+					type="password" name="passwd" />
+					
 			</div>
 			<br>
 			<div class="submit">
-				<input type="submit" value="Registration" />
+				
 			</div>
 
 		</form>
 	</div>
-	
-	
-	
+<a href="/"> Menu </a>
+
+
 	<div th:if="${@mainController.logged}">
-		<h5>You are logged as <span
-			th:text="${@mainController.loggedPlayer.name}"></span> 
-			<br>
-			<a href="/logout">Logout</a></h5>
+		<h5>
+			You are logged as <span
+				th:text="${@mainController.loggedPlayer.name}"></span> <br> <a
+				href="/logout">Logout</a>
+		</h5>
 	</div>
 
-	<h3>Our favorite games:</h3>
-	<br />
-	<div class="row">
-		<div class="column">
-			<a href="/puzzle">Puzzle <br> <br> <img
-				src="https://i0.wp.com/21stcentury.sk/wp-content/uploads/2019/01/puzzle-3155663_1280.png?fit=1170%2C1064&ssl=1"
-				alt="Puzzle" width="280px" height="260" class="center">
-			</a>
-
-		</div>
-		<div class="mines">
-			<a href="/mines">Mines <br> <br> <img
-				src="https://lh5.googleusercontent.com/pxcEeXQCz79UjK0_FM6ZvdOFYHqRI-2G1rPnw82uUffcuZ8rGRks51v8hx5PstGHQ6YNxMewP6CvEM2s94SS4r6-5F63GjprnpSybALtO6jL1Qku3dxKjYhiaAnWKS2_JvjJFaIZ"
-				width="280" height="260" class="center">
-			</a>
-		</div>
-		<div class="column">
-			<a href="/guessnumber">Guess Number<br> <br> <img
-				src="https://steemitimages.com/p/26uUsAjKTsXCU4r99SS9TjgEPJfKcfgP6d2aSvkwgQZ28ezpFCEjspMzybyaHPDi1zUxW4Qn3mQ8hsxWui3NWoqswNFV6f6P3SNYGymDYBpNT5dphHC9qSuxnb9XVYcWw6GoHKCRq2wF2BcD3gpr1AvUE8hGxtFafDbK8z?format=match&mode=fit"
-				width="280" height="260" class="center">
-			</a>
-		</div>
-	</div>
-
-
-
-
+	
 
 
 

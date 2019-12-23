@@ -25,16 +25,6 @@ public class MainController {
 		return "index";
 	}
 
-	/*
-	 * @RequestMapping("/registration") public String registration(Player player) {
-	 * String name = player.getName(); Player user = playerService.getPlayer(name);
-	 * 
-	 * if (user == null) { Player p = new Player(player.getName(),
-	 * player.getPasswd()); playerService.addPlayer(p); }
-	 * 
-	 * return "redirect:/"; }
-	 */
-
 	public List<Player> listAllUsers() {
 		return playerService.listAllUsers();
 	}

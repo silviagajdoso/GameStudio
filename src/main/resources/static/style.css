@@ -2,6 +2,20 @@ body {
 	background-color: darkgrey;
 }
 
+form {
+  width: 200px;
+
+}
+
+button {
+  border: 0;
+  background: transparent;
+  font-size: 1.5em;
+  margin: 10;
+  padding: 10;
+  float: right;
+}
+
 h1 {
 	font-size: 60px;
 	color: #C71585;
@@ -18,11 +32,12 @@ h2 {
 	text-align: center;
 }
 
-div.container {
+div.container-fluid {
 	margin: auto;
-	max-width: 90%;
+align-content:center;
 	border: 3px solid grey;
 	padding: 10px;
+		padding-bottom: 20px;
 }
 
 }
@@ -66,6 +81,7 @@ h5 {
 }
 
 .center {
+	
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -76,7 +92,7 @@ h5 {
 }
 
 .column {
-	float: right;
+	float: left;
 	width: 33.33%;
 }
 
@@ -102,7 +118,9 @@ form input[type="submit"] {
 div.column {
 	width: 33.33%;
 	background-color: lightgrey;
-	border: 2px black;
+	border-color: 2px black;
+	padding-left: 10px;
+
 }
 
 div.mines {
@@ -119,15 +137,38 @@ a {
 }
 
 .submit input {
-	margin-left: 250px;
+	margin-left: 0px;
 }
 
+
+div.column2{
+	padding-left: 10px;
+	padding-right: 10px;
+	float: left;
+	width: 33.33%;
+
+	border: 2px black;
+}
 .info input {
 	width: 100%;
 }
-
-
-
-div.puzzle {
-	text-align: center;
+div.row{
+	padding-left: 50px;
+	padding-right: 50px;
+	
 }
+
+button:hover,
+button:hover + button,
+button:hover + button + button,
+button:hover + button + button + button,
+button:hover + button + button + button + button {
+  color: #faa;
+}
+div.containerP{
+	max-width: 550px;
+	  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+

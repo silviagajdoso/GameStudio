@@ -7,7 +7,7 @@ import sk.tsystems.gamestudio.service.ScoreService.ScoreServiceJDBC;
 public class Main {
 
 	public static void main(String[] args) {
-		ScoreService scoreService = new ScoreServiceJDBC();
+
 
 		// scoreService.addScore(new Score("fero", "puzzle", 224));
 		for (Score score : scoreService.getTopScores("puzzle"))

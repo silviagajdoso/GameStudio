@@ -1,39 +1,102 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="/style.css" type="text/css">
 <title>Mines</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h4>
-		<a href="/">Gamestudio</a>
-	</h4>
-	<h4>Mines</h4>
+	<div class="w3-container w3-center ">
+	<h1>
+		Gamestudio
+	</h1>
+	</div>
 	<div th:if="${@mainController.logged}">
+	
 		<h5>
 			You are logged as <span
 				th:text="${@mainController.loggedPlayer.name}"></span> <br> <a
 				href="/logout">Logout</a>
 		</h5>
 	</div>
+	<h4>Mines</h4>
+	
 
 
-	<h4>
-		<a href="/mines">New game</a>
-	</h4>
+		<br /> <a href="/"> Menu </a> <br /> <a href="/mines">
+			NewGame </a> <br />
+
+
 	<br />
-	<section>
-		<div class="container">
-			You are now <span th:if="${@minesController.marking}">MARKING</span>
-			<span th:if="${not @minesController.marking}">OPENING</span> <br>
-			<a href="/mines/change">click to here change</a><br />
+<section>
+	<div class="container">
+		You are now <span th:if="${@minesController.marking}">MARKING</span> <span
+			th:if="${not @minesController.marking}">OPENING</span> <br> <a
+			href="/mines/change">click to here change</a><br />
 
 
 
-			<div th:utext="${@minesController.htmlField}"></div>
-		
+		<div th:utext="${@minesController.htmlField}"></div>
+
 </div>
 </section>
+
+	
+	<div class="column2">
+				<h4>Scores</h4>
+				<ol>
+					<li th:each="score : ${@minesController.scores}"><span
+						th:text="${score.username}"></span> <span th:text="${score.game}"></span>
+						<span th:text="${score.value}"></span></li>
+				</ol>
+
+			</div>
+
+
+		<div class="column2" th:if="${@mainController.logged}">
+			<h4>Raiting</h4>
+			<form action="/mines/raiting">
+
+				<label><input type="radio" name="raiting" value="1"></label>
+				<label><input type="radio" name="raiting" value="2"></label>
+				<label><input type="radio" name="raiting" value="3"></label>
+				<label><input type="radio" name="raiting" value="4"></label>
+				<label><input type="radio" name="raiting" value="5"></label>
+
+
+
+				<button type="submit">Submit</button>
+			</form>
+
+
+
+			<br>
+			<form action="/mines/comment">
+				Comment: <input type="text" name="content" /> <input type="submit"
+					value="Send comment" /> <br> <br> <br>
+			</form>
+
+		</div>
+
+		<div class="column2">
+			<h4>Comments</h4>
+			<br />
+			<ol>
+				<li th:each="comment: ${@minesController.comment}"><span
+					th:text="${comment.username}"></span><span
+					th:text="${comment.game}"></span> <span
+					th:text="${comment.content}"></span></li>
+			</ol>
+		</div>
+
+	
+
 </body>
 </html>
