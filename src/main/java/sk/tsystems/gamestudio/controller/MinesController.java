@@ -145,4 +145,7 @@ public class MinesController {
 	public List<Comment> getComment() {
 		return commentService.getComment("mines");
 	}
+	public double getAverageRaiting() {
+		return raitingService.getAverageRaiting("mines");
+	}
 }

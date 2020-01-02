@@ -60,6 +60,10 @@
 
 	<div class="column2" th:if="${@mainController.logged}">
 		<h4>Raiting</h4>
+			<h5>Average score</h5>
+
+		 <div th:text="${@guessnumberController.averageRaiting}"></div>
+	
 		<form action="/guessgame/raiting">
 
 			<label><input type="radio" name="raiting" value="1"></label>

@@ -20,12 +20,14 @@
 
 			<div class="info">
 				Login:<input type="text" name="name" /> 
-				Password: <input type="password" name="passwd" />
+				Password: <input type="password" name="passwd" required/>
 			</div>
 			<br>
 			<div class="submit">
 				<input type="submit" value="Login" />
 			</div>
+			<div th:text= "${@mainController.message}"></div>
+			
 			</form>
 <a href="/registration">Create new account</a>
 		

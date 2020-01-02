@@ -14,7 +14,7 @@ import sk.tsystems.gamestudio.entity.Raiting;
 
 @Component
 @Transactional
-public class RaitngServiceJPA implements RaitingService {
+public class RaitingServiceJPA implements RaitingService {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -40,11 +40,14 @@ public class RaitngServiceJPA implements RaitingService {
 			entityManager.persist(raiting);
 		}}
 
+
 	@Override
-	public double getAverageRaiting() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getAverageRaiting(String game)
+	{Double x = (Double) entityManager.createQuery("Select Avg(r.value) from Raiting r where r.game = :game").setParameter("game", game).setParameter("game", game).getSingleResult();
+		return x.doubleValue();
 	}
+
+
 		
 
 

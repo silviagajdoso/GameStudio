@@ -14,6 +14,7 @@ public class Player {
 	private String name;
 
 	private String passwd;
+ 
 
 	public Player() {
 	}
@@ -46,5 +47,13 @@ public class Player {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
+	public boolean validPassword(String passwd) {
+		if (passwd.length()>6){
+			return true;
+		}
+		return false;
+		
+	}
+
 
 }

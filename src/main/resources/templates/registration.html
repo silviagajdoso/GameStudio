@@ -19,18 +19,18 @@
 		<form action="/registration/signin">
 
 			<div class="info">
-				Username:<input type="text" name="name" /> Password: <input
-					type="password" name="passwd" />
-					
+				Username:<input type="text" name="name"/> Password: <input
+					type="password" name="passwd" required/>
+
 			</div>
 			<br>
 			<div class="submit">
-				
+				<input type="submit" value="Sign in" />
 			</div>
-
+			<div th:text="${@registrationController.message}"></div>
 		</form>
 	</div>
-<a href="/"> Menu </a>
+	<a href="/"> Menu </a>
 
 
 	<div th:if="${@mainController.logged}">
@@ -41,7 +41,7 @@
 		</h5>
 	</div>
 
-	
+
 
 
 

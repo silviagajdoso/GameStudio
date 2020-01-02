@@ -16,28 +16,39 @@ import sk.tsystems.gamestudio.service.ScoreService.PlayerServiceJPA;
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class MainController {
 	private Player loggedPlayer;
+	public String message;
 
 	@Autowired
 	private PlayerServiceJPA playerService;
 
 	@RequestMapping("/")
 	public String index() {
+		message = "";
 		return "index";
 	}
 
-	public List<Player> listAllUsers() {
-		return playerService.listAllUsers();
-	}
+	
+	
 
 	@RequestMapping("/login")
 	public String login(String name, String passwd) {
 		Player playerInDb = playerService.getPlayer(name);
-		if (playerInDb != null) {
+		try {
+			if (playerInDb != null) {
 
-			if (passwd.equals(playerInDb.getPasswd())) {
+				if (passwd.equals(playerInDb.getPasswd())) {
 
-				loggedPlayer = playerInDb;
+					loggedPlayer = playerInDb;
+				}
+				else {message= "Wrong password";
+				return "index";}
 			}
+			else {message= "User doesn't exist";
+			return "index";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return "redirect:/";
@@ -52,8 +63,15 @@ public class MainController {
 	public boolean isLogged() {
 		return loggedPlayer != null;
 	}
+	public String getMessage() {
+		return message;
+	}
 
 	public Player getLoggedPlayer() {
 		return loggedPlayer;
+	}
+	
+	public List<Player> listAllUsers() {
+		return playerService.listAllUsers();
 	}
 }

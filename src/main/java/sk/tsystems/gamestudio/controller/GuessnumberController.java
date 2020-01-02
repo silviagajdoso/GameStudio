@@ -118,6 +118,7 @@ public class GuessnumberController {
 		return score > 0 ? score : 0;
 
 	}
+	
 
 	public List<Comment> getComment() {
 		return commentService.getComment("guessgame");
@@ -126,4 +127,9 @@ public class GuessnumberController {
 	public List<Score> getScores() {
 		return scoreService.getTopScores("guessgame");
 	}
+	
+	public double getAverageRaiting() {
+		return raitingService.getAverageRaiting("guessgame");
+	}
 }
+

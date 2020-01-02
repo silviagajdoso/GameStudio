@@ -110,5 +110,8 @@ public class PuzzleController {
 	public List<Comment> getComment() {
 		return commentService.getComment("puzzle");
 	}
+	public double getAverageRaiting() {
+		return raitingService.getAverageRaiting("puzzle");
+	}
 
 }
