@@ -19,27 +19,28 @@
 		<form action="/login">
 
 			<div class="info">
-				Login:<input type="text" name="name" /> 
-				Password: <input type="password" name="passwd" required/>
+				Login:<input type="text" name="name" /> Password: <input
+					type="password" name="passwd" required />
 			</div>
 			<br>
 			<div class="submit">
 				<input type="submit" value="Login" />
 			</div>
-			<div th:text= "${@mainController.message}"></div>
-			
-			</form>
-<a href="/registration">Create new account</a>
-		
+			<div th:text="${@mainController.message}"></div>
+
+		</form>
+		<a href="/registration">Create new account</a>
+
 	</div>
-	
-	
-	
+
+
+
 	<div th:if="${@mainController.logged}">
-		<h5>You are logged as <span
-			th:text="${@mainController.loggedPlayer.name}"></span> 
-			<br>
-			<a href="/logout">Logout</a></h5>
+		<h5>
+			You are logged as <span
+				th:text="${@mainController.loggedPlayer.name}"></span> <br> <a
+				href="/logout">Logout</a>
+		</h5>
 	</div>
 
 	<h3>Our favorite games:</h3>

@@ -40,9 +40,9 @@ public class RegistrationController {
 					message = "Username already in use";
 					return "registration";
 				}
-				
+
 			}
-			if (name.length() <5 ){
+			if (name.length() < 5) {
 				message = "Username must have at least 5 characters.";
 				return "registration";
 			}
@@ -50,14 +50,10 @@ public class RegistrationController {
 				message = "Password can't be empty";
 				return "registration";
 
-			}
-			else {
+			} else {
 				Player p = new Player(player.getName(), player.getPasswd());
 				playerService.addPlayer(p);
 			}
-			
-
-			
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

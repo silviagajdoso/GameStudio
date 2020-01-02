@@ -27,13 +27,16 @@
 				href="/logout">Logout</a>
 		</h5>
 	</div>
-	
-		<br /> <a href="/"> Menu </a> <br /> <a href="/guessgame">
-			NewGame </a> <br />
 
-<br>
+	<br />
+	<a href="/"> Menu </a>
+	<br />
+	<a href="/guessgame"> NewGame </a>
+	<br />
 
-<h4>Guess the number from 0 to 100</h4>
+	<br>
+
+	<h4>Guess the number from 0 to 100</h4>
 	<section>
 		<div class="container">
 			<form action="/guessgame/guess">
@@ -60,10 +63,10 @@
 
 	<div class="column2" th:if="${@mainController.logged}">
 		<h4>Raiting</h4>
-			<h5>Average score</h5>
+		<h5>Average score</h5>
 
-		 <div th:text="${@guessnumberController.averageRaiting}"></div>
-	
+		<div th:text="${@guessnumberController.averageRaiting}"></div>
+
 		<form action="/guessgame/raiting">
 
 			<label><input type="radio" name="raiting" value="1"></label>
@@ -77,10 +80,10 @@
 			<button type="submit">Submit</button>
 		</form>
 		<form action="/guessgame/comment">
-		Comment: <input type="text" name="content" /> <input type="submit"
-			value="Send comment" /> <br> <br> <br>
-	</form>
-		
+			Comment: <input type="text" name="content" /> <input type="submit"
+				value="Send comment" /> <br> <br> <br>
+		</form>
+
 
 	</div>
 

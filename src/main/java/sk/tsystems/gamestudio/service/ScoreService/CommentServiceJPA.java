@@ -1,4 +1,3 @@
-package sk.tsystems.gamestudio.service.ScoreService;
 
 import java.util.List;
 
@@ -9,7 +8,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import sk.tsystems.gamestudio.entity.Comment;
-
 
 @Component
 @Transactional
@@ -24,9 +22,8 @@ public class CommentServiceJPA implements CommentService {
 
 	@SuppressWarnings("unchecked")
 	public List<Comment> getComment(String game) {
-		return (List<Comment>) entityManager
-				.createQuery("select c from Comment c where c.game = :game")
+		return (List<Comment>) entityManager.createQuery("select c from Comment c where c.game = :game")
 				.setParameter("game", game).getResultList();
 	}
-	
+
 }

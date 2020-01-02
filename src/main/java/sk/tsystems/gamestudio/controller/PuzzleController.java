@@ -29,7 +29,7 @@ public class PuzzleController {
 
 	@Autowired
 	private ScoreService scoreService;
-	
+
 	@Autowired
 	private RaitingService raitingService;
 
@@ -63,17 +63,19 @@ public class PuzzleController {
 		}
 		return "puzzle";
 	}
-	
+
 	@RequestMapping("/rating")
 	public String raiting(String raiting) {
-		try {System.out.println("----------------------------------------------------------------------------------" + raiting);
+		try {
+			System.out.println(
+					"----------------------------------------------------------------------------------" + raiting);
 			int parseRate = Integer.parseInt(raiting);
 			raitingService.setRaiting(new Raiting(mainController.getLoggedPlayer().getName(), "puzzle", parseRate));
 		} catch (Exception e) {
-		  e.printStackTrace();
+			e.printStackTrace();
 		}
-		return "puzzle";}
-
+		return "puzzle";
+	}
 
 	public String getHtmlField() {
 		Formatter f = new Formatter();
@@ -110,6 +112,7 @@ public class PuzzleController {
 	public List<Comment> getComment() {
 		return commentService.getComment("puzzle");
 	}
+
 	public double getAverageRaiting() {
 		return raitingService.getAverageRaiting("puzzle");
 	}

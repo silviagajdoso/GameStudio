@@ -27,9 +27,6 @@ public class MainController {
 		return "index";
 	}
 
-	
-	
-
 	@RequestMapping("/login")
 	public String login(String name, String passwd) {
 		Player playerInDb = playerService.getPlayer(name);
@@ -39,12 +36,13 @@ public class MainController {
 				if (passwd.equals(playerInDb.getPasswd())) {
 
 					loggedPlayer = playerInDb;
+				} else {
+					message = "Wrong password";
+					return "index";
 				}
-				else {message= "Wrong password";
-				return "index";}
-			}
-			else {message= "User doesn't exist";
-			return "index";
+			} else {
+				message = "User doesn't exist";
+				return "index";
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -63,6 +61,7 @@ public class MainController {
 	public boolean isLogged() {
 		return loggedPlayer != null;
 	}
+
 	public String getMessage() {
 		return message;
 	}
@@ -70,7 +69,7 @@ public class MainController {
 	public Player getLoggedPlayer() {
 		return loggedPlayer;
 	}
-	
+
 	public List<Player> listAllUsers() {
 		return playerService.listAllUsers();
 	}
