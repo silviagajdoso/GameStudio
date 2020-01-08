@@ -15,59 +15,89 @@
 <link rel="stylesheet" href="/style.css" type="text/css">
 </head>
 <body>
-
+<div class= "header">
 	<div class="w3-container w3-center ">
-		<h1>Game Studio</h1>
+		<h1>
+			<a class="gamestudio" href="/">Gamestudio</a>
+		</h1>
 	</div>
-	<h4>Guess The Number Game</h4>
-	<div th:if="${@mainController.logged}">
+		<div th:if="${not @mainController.logged}">
 		<h5>
-			You are logged as <span
-				th:text="${@mainController.loggedPlayer.name}"></span> <br> <a
-				href="/logout">Logout</a>
+			You are not logged. <br> Please <a href="/">log in</a>
 		</h5>
 	</div>
 
-	<br />
-	<a href="/"> Menu </a>
-	<br />
-	<a href="/guessgame"> NewGame </a>
-	<br />
+	<div th:if="${@mainController.logged}">
+		<h5>
+			You are logged as <span
+				th:text="${@mainController.loggedPlayer.name}"></span><br /> <a
+				href="/logout">Logout</a>
+		</h5>
+	</div>
+	</div>
+	<h4>Guess The Number Game</h4>
+
+<div class= "gamecontainer">
+	
+
 
 	<br>
 
 	<h4>Guess the number from 0 to 100</h4>
+	<br>
+	
 	<section>
 		<div class="container">
-			<form action="/guessgame/guess">
+		
+			<form class= "guessgame" action="/guessgame/guess">
+		
 				<input type="text" name="value"> <input type="submit"
 					value="Submit Number">
-			</form>
-			<div class="w3-container  w3-allerta"
+				<br>
+			
+				<br>
+			<div class="font-weight-bold" 
 				th:utext="${@guessnumberController.message}"></div>
 
-
+</form>
+<a href="/guessgame"> NewGame </a>
 		</div>
 	</section>
-
-	<div class="column2">
-		<h4>Scores</h4>
-		<ol>
-			<li th:each="score : ${@guessnumberController.scores}"><span
-				th:text="${score.username}"></span> <span th:text="${score.game}"></span>
-				<span th:text="${score.value}"></span></li>
-		</ol>
-
+	<br>
 	</div>
 
+	<div class="column2">
+			<h3>Scores</h3>
+			<table class="table table-striped table-dark">
+				<thead>
+					<tr>
 
-	<div class="column2" th:if="${@mainController.logged}">
-		<h4>Raiting</h4>
-		<h5>Average score</h5>
+						<th scope="col">Username</th>
+						<th scope="col">Game</th>
+						<th scope="col">Score</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="score : ${@puzzleController.scores}">
 
-		<div th:text="${@guessnumberController.averageRaiting}"></div>
+						<tr th:each="score : ${@puzzleController.scores}">
+				<td><span th:text="${score.username}"></span></td>
+						<td><span th:text="${score.game}"></span></td>
+						<td><span th:text="${score.value}"></span></td>
+					</tr></tbody>
+			</table>
+		</div>
 
-		<form action="/guessgame/raiting">
+
+	<div class="column2">
+		<h3>Raiting</h3>
+		<div th:if="${not @mainController.logged}">
+		<h5>
+			You are not logged. If you want to rate, please <a href="/">log in</a>
+		</h5>
+	</div>
+
+		<form action="/guessgame/raiting"  th:if="${@mainController.logged}">
 
 			<label><input type="radio" name="raiting" value="1"></label>
 			<label><input type="radio" name="raiting" value="2"></label>
@@ -77,27 +107,38 @@
 
 
 
-			<button type="submit">Submit</button>
+			<button type="submit">Submit your rating</button>
 		</form>
-		<form action="/guessgame/comment">
-			Comment: <input type="text" name="content" /> <input type="submit"
-				value="Send comment" /> <br> <br> <br>
-		</form>
-
+		
+<div class="p-3 mb-2 bg-secondary text-white">
+			<p>Average rating of the game:</p>
+			<div th:text="${@guessnumberController.averageRaiting}"></div>
+		</div>
 
 	</div>
 
 
 
-	<div class="column2">
-		<h4>Comments</h4>
-		<br />
+	<div class="column2 comment">
+		<h3>Comments</h3>
+		<div th:if="${not @mainController.logged}">
+		<h5>
+			You are not logged. <br> Please <a href="/">log in</a>
+		</h5>
+	</div>
+		
+		<form action="/guessgame/comment"th:if="${@mainController.logged}">
+
+			<input type="text" name="content" placeholder="write a comment..." /> <input type="submit"
+				value="Post" />
+		</form>
+		<div class="p-3 mb-2 bg-dark text-white">
 		<ol>
 			<li th:each="comment: ${@guessnumberController.comment}"><span
-				th:text="${comment.username}"></span><span th:text="${comment.game}"></span>
+				th:text="${comment.username}"> </span><span >: </span> 
 				<span th:text="${comment.content}"></span></li>
 		</ol>
 	</div>
-
+</div>
 </body>
 </html>

@@ -36,23 +36,34 @@ public class RegistrationController {
 
 		try {
 			if (user != null) {
-				{
-					message = "Username already in use";
-					return "registration";
-				}
-
+				message = "Username already in use";
+				return "registration";
 			}
+
 			if (name.length() < 5) {
 				message = "Username must have at least 5 characters.";
 				return "registration";
 			}
 			if (password == "") {
 				message = "Password can't be empty";
+				return "registration";}
+			if (password.length() < 5) {
+				message = "Password must have at least 5 characters.";
 				return "registration";
-
-			} else {
+			}
+			if(name.contains(" ")) {
+				message = "No special characters";
+				return "registration";
+				
+			}
+			if(password.contains(" ")) {
+				message = "No special characters in password";
+				return "registration";
+			}
+			else {
 				Player p = new Player(player.getName(), player.getPasswd());
 				playerService.addPlayer(p);
+				
 			}
 
 		} catch (Exception e) {

@@ -12,6 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.entity.Comment;
 import sk.tsystems.gamestudio.entity.Raiting;
+
 import sk.tsystems.gamestudio.game.npuzzle.core.Field;
 import sk.tsystems.gamestudio.game.npuzzle.core.Tile;
 import sk.tsystems.gamestudio.service.ScoreService.CommentService;
@@ -70,8 +71,9 @@ public class PuzzleController {
 			System.out.println(
 					"----------------------------------------------------------------------------------" + raiting);
 			int parseRate = Integer.parseInt(raiting);
+			if (parseRate >0 &&parseRate<=5) {
 			raitingService.setRaiting(new Raiting(mainController.getLoggedPlayer().getName(), "puzzle", parseRate));
-		} catch (Exception e) {
+			}} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "puzzle";

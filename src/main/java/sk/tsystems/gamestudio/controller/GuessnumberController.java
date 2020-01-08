@@ -94,8 +94,9 @@ public class GuessnumberController {
 			System.out.println(
 					"----------------------------------------------------------------------------------" + raiting);
 			int parseRate = Integer.parseInt(raiting);
+			if (parseRate >0 &&parseRate<=5) {
 			raitingService.setRaiting(new Raiting(mainController.getLoggedPlayer().getName(), "guessgame", parseRate));
-		} catch (Exception e) {
+		}} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "guessgame";

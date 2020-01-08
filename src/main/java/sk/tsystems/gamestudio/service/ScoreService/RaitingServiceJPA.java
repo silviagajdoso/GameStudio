@@ -43,7 +43,7 @@ public class RaitingServiceJPA implements RaitingService {
 
 	@Override
 	public double getAverageRaiting(String game)
-	{Double x = (Double) entityManager.createQuery("Select Avg(r.value) from Raiting r where r.game = :game").setParameter("game", game).setParameter("game", game).getSingleResult();
+	{Double x = (Double) entityManager.createQuery("Select round (Avg(r.value),1) from Raiting r where r.game = :game").setParameter("game", game).setParameter("game", game).getSingleResult();
 		return x.doubleValue();
 	}
 

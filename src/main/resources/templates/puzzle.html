@@ -10,11 +10,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<div class="w3-container w3-center ">
-		<h1>Gamestudio</h1>
-	</div>
+<div class= "header">
+	
+		<h1>
+			<a class="gamestudio" href="/">Gamestudio</a>
+		</h1>
 
-	<h4>Puzzle</h4>
+
+	
 
 	<div th:if="${not @mainController.logged}">
 		<h5>
@@ -29,66 +32,90 @@
 				href="/logout">Logout</a>
 		</h5>
 	</div>
-
-	<div class="w3-container w3-center w3-allerta">
-		<br /> <a href="/"> Menu </a> <br /> <a href="/puzzle">New game</a>
-
-		<br />
 	</div>
+	<h4>Puzzle</h4>
+
+	<div class="gamecontainer">
+		<br /> 
+	
 
 
 	<div class="containerP" th:if="${@puzzleController.solved}">
 		You've solved the puzzle!<br /> <img src="/images/puzzle/puzzle.jpg" />
 	</div>
-
-	<div th:if="${not @puzzleController.solved}">
+<a href="/puzzle">New game</a> <br />
+	<div class="containerP" th:if="${not @puzzleController.solved}">
 		<div th:utext="${@puzzleController.htmlField}"></div>
 	</div>
 
 	<br>
-	<div class="container5">
+</div>
 		<div class="column2">
 			<h3>Scores</h3>
-			<ol>
-				<li th:each="score : ${@puzzleController.scores}"><span
-					th:text="${score.username}"></span> <span th:text="${score.game}"></span>
-					<span th:text="${score.value}"></span></li>
-			</ol>
+			<table class="table table-striped table-dark">
+				<thead>
+					<tr>
 
+						<th scope="col">Username</th>
+						<th scope="col">Game</th>
+						<th scope="col">Score</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="score : ${@puzzleController.scores}">
+
+						<tr th:each="score : ${@puzzleController.scores}">
+				<td><span th:text="${score.username}"></span></td>
+						<td><span th:text="${score.game}"></span></td>
+						<td><span th:text="${score.value}"></span></td>
+					</tr></tbody>
+			</table>
 		</div>
+	
 
-		<div class="column2" th:if="${@mainController.logged}">
-			<h4>Raiting</h4>
-			<h5>Average score</h5>
+	<div class="column2">
+		<h3>Rating</h3>
 
+<div th:if="${not @mainController.logged}">
+		<h5>
+			You are not logged. <br> Please <a href="/">log in</a>
+		</h5>
+	</div>
+		<form action="/puzzle/rating" th:if="${@mainController.logged}">
+
+			<label for="1"><input type="radio" name="raiting" value="1"
+				id="1"></label> <label><input type="radio" name="raiting"
+				value="2"></label> <label><input type="radio" name="raiting"
+				value="3"></label> <label><input type="radio" name="raiting"
+				value="4"></label> <label><input type="radio" name="raiting"
+				value="5"></label>
+
+
+
+			<button type="submit">Submit your rating</button>
+		</form>
+		<div class="p-3 mb-2 bg-secondary text-white">
+			<p>Average rating of the game:</p>
 			<div th:text="${@puzzleController.averageRaiting}"></div>
-			<form action="/puzzle/rating">
-
-				<label for="1"><input type="radio" name="raiting" value="1"
-					id="1"></label> <label><input type="radio" name="raiting"
-					value="2"></label> <label><input type="radio"
-					name="raiting" value="3"></label> <label><input
-					type="radio" name="raiting" value="4"></label> <label><input
-					type="radio" name="raiting" value="5"></label>
-
-
-
-				<button type="submit">Submit</button>
-			</form>
-
-
-
-			<br>
-			<form action="/puzzle/comment">
-				Comment: <input type="text" name="content" /> <input type="submit"
-					value="Send comment" /> <br> <br> <br>
-			</form>
-
 		</div>
 
-		<div class="column2">
-			<h4>Comments</h4>
-			<br />
+	</div>
+
+	<div class="column2 comment">
+		<h3>Comments</h3>
+
+
+<div th:if="${not @mainController.logged}">
+		<h5>
+			You are not logged. If you want to commment, please <a href="/">log in</a>
+		</h5>
+	</div>
+
+		<form action="/puzzle/comment" th:if="${@mainController.logged}">
+			<input type="text" name="content" placeholder="write a comment..." />
+			<input type="submit" value="Post" /> <br>
+		</form>
+		<div class="p-3 mb-2 bg-dark text-white">
 			<ol>
 				<li th:each="comment: ${@puzzleController.comment}"><span
 					th:text="${comment.username}"></span><span
@@ -96,11 +123,7 @@
 					th:text="${comment.content}"></span></li>
 			</ol>
 		</div>
-
 	</div>
-
-
-
 
 
 </body>

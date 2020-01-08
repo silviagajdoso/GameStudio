@@ -1,3 +1,5 @@
+package sk.tsystems.gamestudio.service.ScoreService;
+
 
 import java.util.List;
 

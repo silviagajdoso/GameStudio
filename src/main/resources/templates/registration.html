@@ -1,26 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="/style.css" type="text/css">
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	<link rel="stylesheet" href="/style.css" type="text/css">
 <meta charset="utf-8">
 <title>Gamestudio</title>
 </head>
 <body>
-	<h1>Welcome to Game Studio!</h1>
+	<div class= "header">
+		<h1>	<a class="gamestudio" href="/">Welcome to Gamestudio</a>
+		</h1>
 
 
-	<div th:if="${not @mainController.logged}">
+	<div class = "registration" th:if="${not @mainController.logged}">
 		<h4>Registration</h4>
 
 		<form action="/registration/signin">
 
 			<div class="info">
-				Username:<input type="text" name="name" /> Password: <input
-					type="password" name="passwd" required />
+				Username:<input type="text" name="name" placeholder="min 4 characters"/> Password: <input
+					type="password" name="passwd" required placeholder="min 5 characters"/>
 
 			</div>
 			<br>
@@ -41,7 +44,7 @@
 		</h5>
 	</div>
 
-
+</div>
 
 
 

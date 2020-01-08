@@ -43,7 +43,7 @@ public class MinesController {
 
 	@RequestMapping
 	public String index() {
-		field = new Field(10, 10, 20);
+		field = new Field(8, 10, 3);
 		return "mines";
 	}
 
@@ -52,7 +52,7 @@ public class MinesController {
 
 		if (mainController.isLogged()) {
 			commentService
-					.addComment(new Comment(mainController.getLoggedPlayer().getName(), " mines", comment.getContent()));
+					.addComment(new Comment(mainController.getLoggedPlayer().getName(), "mines", comment.getContent()));
 		}
 		return "mines";
 	}
@@ -63,8 +63,9 @@ public class MinesController {
 			System.out.println(
 					"----------------------------------------------------------------------------------" + raiting);
 			int parseRate = Integer.parseInt(raiting);
-			raitingService.setRaiting(new Raiting(mainController.getLoggedPlayer().getName(), " mines", parseRate));
-		} catch (Exception e) {
+			if (parseRate >0 &&parseRate<=5) {
+			raitingService.setRaiting(new Raiting(mainController.getLoggedPlayer().getName(), "mines", parseRate));
+			}} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "mines";
@@ -78,7 +79,7 @@ public class MinesController {
 			else
 				field.openTile(row, column);
 		if (field.getState() == GameState.SOLVED && mainController.isLogged()) {
-			Score score = new Score(mainController.getLoggedPlayer().getName(), " mines", field.getScore());
+			Score score = new Score(mainController.getLoggedPlayer().getName(), "mines", field.getScore());
 			scoreService.addScore(score);
 		}
 
@@ -145,8 +146,8 @@ public class MinesController {
 	public List<Comment> getComment() {
 		return commentService.getComment("mines");
 	}
-
+	
 	public double getAverageRaiting() {
-		return raitingService.getAverageRaiting("mines");
+		return  raitingService.getAverageRaiting("mines");
 	}
 }

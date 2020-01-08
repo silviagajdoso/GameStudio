@@ -1,26 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="/style.css" type="text/css">
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	<link rel="stylesheet" href="/style.css" type="text/css">
 <meta charset="utf-8">
 
 <title>Gamestudio</title>
 </head>
-<body>
-	<h1>Welcome to Game Studio!</h1>
+<body class= "main">
+<div class= "header">
+		<h1>	<a class="gamestudio" href="/">Welcome to Gamestudio</a>
+		</h1>
 
-	<div th:if="${not @mainController.logged}">
+	<div class= "login" th:if="${not @mainController.logged}">
 		<h4>Please login</h4>
 
 		<form action="/login">
 
 			<div class="info">
-				Login:<input type="text" name="name" /> Password: <input
-					type="password" name="passwd" required />
+				Login:<input type="text" name="name" placeholder= "username"/> Password: <input
+					type="password" name="passwd" placeholder= "enter password" required/>
 			</div>
 			<br>
 			<div class="submit">
@@ -32,7 +35,8 @@
 		<a href="/registration">Create new account</a>
 
 	</div>
-
+<br>
+<br>
 
 
 	<div th:if="${@mainController.logged}">
@@ -41,28 +45,32 @@
 				th:text="${@mainController.loggedPlayer.name}"></span> <br> <a
 				href="/logout">Logout</a>
 		</h5>
+		<br>
 	</div>
+</div>
 
 	<h3>Our favorite games:</h3>
-	<br />
+<br>
 	<div class="row">
+
 		<div class="column">
+	
 			<a href="/puzzle">Puzzle <br> <br> <img
 				src="https://i0.wp.com/21stcentury.sk/wp-content/uploads/2019/01/puzzle-3155663_1280.png?fit=1170%2C1064&ssl=1"
-				alt="Puzzle" width="200px" height="280px" class="center">
+				alt="Puzzle"  height="330em" class="center">
 			</a>
 
 		</div>
 		<div class="column">
 			<a href="/mines">Mines <br> <br> <img
 				src="https://lh5.googleusercontent.com/pxcEeXQCz79UjK0_FM6ZvdOFYHqRI-2G1rPnw82uUffcuZ8rGRks51v8hx5PstGHQ6YNxMewP6CvEM2s94SS4r6-5F63GjprnpSybALtO6jL1Qku3dxKjYhiaAnWKS2_JvjJFaIZ"
-				width="200px" height="280" class="center">
+				height="330em" class="center">
 			</a>
 		</div>
 		<div class="column">
-			<a href="/guessgame">Guess Number<br> <br> <img
+			<a href="/guessgame">GuessNumber<br> <br> <img
 				src="https://steemitimages.com/p/26uUsAjKTsXCU4r99SS9TjgEPJfKcfgP6d2aSvkwgQZ28ezpFCEjspMzybyaHPDi1zUxW4Qn3mQ8hsxWui3NWoqswNFV6f6P3SNYGymDYBpNT5dphHC9qSuxnb9XVYcWw6GoHKCRq2wF2BcD3gpr1AvUE8hGxtFafDbK8z?format=match&mode=fit"
-				width="200px" height="280" class="center">
+				height="330em" class="center">
 			</a>
 		</div>
 	</div>
@@ -72,6 +80,9 @@
 
 
 
-
+<footer>
+  <b class="text-primary">Created by: Silvia</b>
+</footer>
 </body>
+
 </html>
