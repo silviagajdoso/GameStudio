@@ -55,7 +55,7 @@
 </div>
 <div class="container5">
 		<div class="column2">
-			<h3>Scores</h3>
+			<h3>Best Score</h3>
 			<table class="table table-striped table-dark">
 				<thead>
 					<tr>
@@ -88,7 +88,7 @@
 		</h5>
 	</div>
 
-			<form action="/mines/rating" th:if="${@mainController.logged}">
+			<form action="/mines/raiting" th:if="${@mainController.logged}">
 
 			<label><input type="radio" name="raiting" value="1"></label>
 			<label><input type="radio" name="raiting" value="2"></label>
@@ -102,7 +102,7 @@
 		</form>
 		<div class="p-3 mb-2 bg-secondary text-white">
 			<p>Average rating of the game:</p>
-			<div th:text="${@puzzleController.averageRaiting}"></div>
+			<div th:text="${@minesController.averageRaiting}"></div>
 		</div>
 
 	</div>
